@@ -1,0 +1,28 @@
+.idea {
+    color: darkblue;
+    border: 1px solid blue;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: lightblue;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.idea button {
+    border-radius: 5px;
+    background-color: lightblue;
+    border: 1px solid blue;
+    color: darkblue;
+    line-height: 1;
+    margin-left: 10px;
+}
+
+.idea button:hover {
+    background-color: blue;
+    color: lightblue;
+}
+
+.idea-output {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

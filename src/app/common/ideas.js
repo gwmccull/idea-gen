@@ -2,7 +2,7 @@ import {Strings} from './strings';
 
 const Ideas = ($http) => {
     let ideas = [
-        {content: "test"}
+        {content: "Albert Einstein"}
     ];
 
     let strings = new Strings();
@@ -10,7 +10,8 @@ const Ideas = ($http) => {
     return {
         getIdeas: getIdeas,
         createIdea: createIdea,
-        removeIdea: removeIdea
+        removeIdea: removeIdea,
+        getResults: getResults
     };
 
     function getIdeas() {
@@ -19,8 +20,8 @@ const Ideas = ($http) => {
     }
 
     function createIdea(idea) {
-        console.log("createIdea", idea);
-        console.log("ideas", ideas);
+        //console.log("createIdea", idea);
+        //console.log("ideas", ideas);
         ideas.push(idea);
     }
 
@@ -38,7 +39,7 @@ const Ideas = ($http) => {
                 method: 'jsonp'
             }).success(function(response) {
                 idea.response = response;
-                console.log('query', response);
+                //console.log('query', response);
                 $http({
                     url: `https://en.wikipedia.org/w/api.php?action=parse&prop=text&page=${idea.response.query.search[0].title.replace(' ', '_')}&format=json&callback=JSON_CALLBACK`,
                     method: 'jsonp'
@@ -52,18 +53,27 @@ const Ideas = ($http) => {
                             .replace(/&amp;/g, ' ')
                             .replace(/[.,'"’‘;:\/*+?^${}()|[\]\\]/g, ' ')
                             .replace(/\s-\s/g, ' ');
-                        console.log("parsedText", idea.response.parsedText)
+                        //console.log("parsedText", idea.response.parsedText)
                         idea.response.cleanedText = strings.stripBoringWords(idea.response.parsedText);
                         idea.response.cleanedText = strings.removeExtraSpaces(idea.response.cleanedText);
                         //idea.response.cleanedText = strings.stripBoringWords("asdf bob bob");
-                        console.log("cleanedText", idea.response.cleanedText)
+                        //console.log("cleanedText", idea.response.cleanedText)
                         idea.response.words = strings.countWords(idea.response.cleanedText);
+                        //console.log("words", idea.response.words);
                         idea.response.sortedWords = strings.sortWords(idea.response.words);
-                        console.log("sorted words", idea.response.sortedWords);
-                    })
+                        //console.log("sorted words", idea.response.sortedWords);
+                    });
                 //$scope.response = response;
             });
         })
+    }
+
+    function getResults(numResults) {
+        if (ideas[0] && ideas[0].response && ideas[0].response.sortedWords) {
+            return ideas[0].response.sortedWords.slice(0, numResults);
+        } else {
+            return null;
+        }
     }
 };
 

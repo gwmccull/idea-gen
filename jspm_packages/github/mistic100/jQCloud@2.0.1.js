@@ -1,0 +1,1 @@
+module.exports = require("github:mistic100/jQCloud@2.0.1/dist/jqcloud");

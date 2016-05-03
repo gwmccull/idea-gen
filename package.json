@@ -23,6 +23,10 @@
   "jspm": {
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.4.7",
+      "css": "github:systemjs/plugin-css@^0.1.18",
+      "jquery": "github:components/jquery@^2.1.4",
+      "mistic100/angular-jqcloud.git": "github:mistic100/angular-jqcloud@^1.0.2",
+      "mistic100/jQCloud": "github:mistic100/jQCloud@^2.0.1",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {

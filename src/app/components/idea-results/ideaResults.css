@@ -1,0 +1,14 @@
+.result {
+    display: inline-block;
+    color: darkred;
+    border: 1px solid red;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: pink;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.idea-results {
+    margin-bottom: 20px;
+}

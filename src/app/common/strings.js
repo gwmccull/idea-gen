@@ -17,7 +17,7 @@ export const Strings = () => {
 
     function stripBoringWords(string) {
         return string
-            .replace(/(?:^|\s)(a|an|is|for|the|I|by|with|it|we|him|her|his|she|he|be|of|and|or|in|to|s|was|that|on|at|from|as|p|pp|ISBN|which|has|had)(?=\s|$)/ig, ' ');
+            .replace(/(?:^|\s)(a|an|is|for|the|I|by|with|it|we|him|her|his|she|he|be|of|and|or|in|to|s|was|that|on|at|from|as|p|pp|ISBN|which|has|had|–|this|would|not|b|were|also)(?=\s|$)/ig, ' ');
     }
 
     function sortWords(obj) {
@@ -28,12 +28,12 @@ export const Strings = () => {
             let index;
 
             for (index = 0; index < result.length; index++) {
-                if (obj[key] >= result[index].count) {
+                if (obj[key] >= result[index].size) {
                     break;
                 }
             }
 
-            result.splice(index, 0, {word: key, count: obj[key]})
+            result.splice(index, 0, {word: key, size: obj[key]})
         }
 
         return result;
